@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const authRouter = require("./routers/authRouter");
+const questionRouter = require("./routers/questionRouter");
 
 mongoose.connect(
   "mongodb://localhost:27017/bestschool",
@@ -17,4 +18,5 @@ mongoose.connect(
   }
 );
 
+app.use("/question", questionRouter);
 app.use("/", authRouter);
