@@ -6,6 +6,7 @@ const schema = new Schema(
   {
     subTitle: { type: String },
     image: { type: String },
+    answer: [{ type: String }],
   },
   {
     timestamps: true,
@@ -16,11 +17,11 @@ const question = mongoose.model("question", schema);
 
 exports.create = async (data, res) => {
   try {
-    const questionData = await question.create(data);
+    const newQuestion = await question.create(data);
 
-    if (!questionData) return res.status(403).json({ messgae: "Invaild data" });
+    if (!newQuestion) return res.status(403).json({ messgae: "Invaild data" });
 
-    return questionData;
+    return newQuestion;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ messgae: "Invaild data", err });
@@ -29,16 +30,17 @@ exports.create = async (data, res) => {
 
 exports.upgrade = async (itemId, data, res) => {
   try {
-    const questionData = await question.findByIdAndUpdate(
+    const upgradQuestion = await question.findByIdAndUpdate(
       {
         _id: ObjectId(itemId),
       },
       data
     );
 
-    if (!questionData) return res.status(403).json({ messgae: "Invaild data" });
+    if (!upgradQuestion)
+      return res.status(403).json({ messgae: "Invaild data" });
 
-    return questionData;
+    return upgradQuestion;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ messgae: "Invaild data", err });
@@ -47,13 +49,14 @@ exports.upgrade = async (itemId, data, res) => {
 
 exports.delete = async (itemId, res) => {
   try {
-    const questionData = await question.findByIdAndDelete({
+    const deletedQuestion = await question.findByIdAndDelete({
       _id: ObjectId(itemId),
     });
 
-    if (!questionData) return res.status(403).json({ messgae: "Invaild data" });
+    if (!deletedQuestion)
+      return res.status(403).json({ messgae: "Invaild data" });
 
-    return questionData;
+    return deletedQuestion;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ messgae: "Invaild data", err });
@@ -62,10 +65,10 @@ exports.delete = async (itemId, res) => {
 
 exports.get = async (res) => {
   try {
-    const questionData = await question.find({});
-    if (!questionData) return res.status(403).json({ messgae: "Invaild data" });
+    const questions = await question.find({});
+    if (!questions) return res.status(403).json({ messgae: "Invaild data" });
 
-    return questionData;
+    return questions;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ messgae: "Invaild data", err });

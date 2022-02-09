@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const authRouter = require("./routers/authRouter");
+const optionRouter = require("./routers/optionRouter");
 const questionRouter = require("./routers/questionRouter");
 
 mongoose.connect(
@@ -18,5 +19,6 @@ mongoose.connect(
   }
 );
 
+app.use("/option", optionRouter);
 app.use("/question", questionRouter);
 app.use("/", authRouter);
