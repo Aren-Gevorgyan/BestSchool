@@ -21,4 +21,4 @@ mongoose.connect(
 
 app.use("/option", optionRouter);
 app.use("/question", questionRouter);
-app.use("/", authRouter);
+app.use("/sign-in", authRouter);
