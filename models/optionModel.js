@@ -46,10 +46,7 @@ exports.upgrade = async (id, data, res) => {
 
 exports.delete = async (id, res) => {
   try {
-    const deletedOption = await option.findByIdAndDelete(
-      { _id: ObjectId(id) },
-      data
-    );
+    const deletedOption = await option.findByIdAndDelete({ _id: ObjectId(id) });
 
     if (!deletedOption)
       return res.status(403).json({ messgae: "Invaild data" });
