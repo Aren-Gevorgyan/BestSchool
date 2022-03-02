@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    title: { type: String },
-    items: [{ type: Object }],
+    title: { type: String, required: true },
+    item: [{ type: Object }],
   },
   {
     timestamps: true,

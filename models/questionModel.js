@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    subTitle: { type: String },
-    image: { type: String },
-    answer: [{ type: String }],
+    question: { type: String, required: true},
+    image: { type: String},
+    answers: [{ type: String }],
+    rightAnswer: {type: Number, required: true},
+    optionId: { type: mongoose.Types.ObjectId, required: true},
   },
   {
     timestamps: true,
