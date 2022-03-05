@@ -3,11 +3,10 @@ const questionModel = require("../models/questionModel");
 
 exports.createQuestion = async (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Invalid data" });
-  const { question, image, answers, rightAnswer, optionId } = req.body;
-  console.log(optionId, 'optionId');
+  const { title, image, answers, rightAnswer, optionId } = req.body;
 
   const data = {
-    question,
+    title,
     image,
     answers,
     rightAnswer,
@@ -20,19 +19,19 @@ exports.createQuestion = async (req, res) => {
 
 exports.upgradeQuestion = async (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Invalid data" });
-  const { question, image, answers, rightAnswer, optionId } = req.body;
+  const { title, image, answers, rightAnswer, optionId } = req.body;
   const { id } = req.params;
 
   const data = {
-    question,
+    title,
     image,
     answers,
     rightAnswer,
     optionId,
   };
 
-  const upgradetData = await questionModel.upgrade(id, data, res);
-  return res.status(202).json(upgradetData);
+  const upgradedData = await questionModel.upgrade(id, data, res);
+  return res.status(202).json(upgradedData);
 };
 
 exports.deleteQuestion = async (req, res) => {

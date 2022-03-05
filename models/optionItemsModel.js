@@ -5,65 +5,67 @@ const Schema = mongoose.Schema;
 const schema = new Schema(
   {
     title: { type: String, required: true },
+    image: { type:  String},
+    optionId: {type: mongoose.Types.ObjectId, required: true}
   },
   {
     timestamps: true,
   }
 );
 
-const option = mongoose.model("option", schema);
+const optionItem = mongoose.model("optionItems", schema);
 
-exports.create = async (data, res) => {
+exports.createItem = async (data, res) => {
   try {
-    const newOption = await option.create(data);
+    const newOptionItem = await optionItem.create(data);
 
-    if (!newOption) return res.status(403).json({ message: "Invalid data" });
+    if (!newOptionItem) return res.status(403).json({ message: "Invalid data" });
 
-    return newOption;
+    return newOptionItem;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
-exports.upgrade = async (id, data, res) => {
+exports.upgradeItem = async (id, data, res) => {
   try {
-    const upgradeOption = await option.findByIdAndUpdate(
+    const upgradeOptionItem = await optionItem.findByIdAndUpdate(
       { _id: ObjectId(id) },
       data
     );
 
-    if (!upgradeOption)
+    if (!upgradeOptionItem)
       return res.status(403).json({ message: "Invalid data" });
 
-    return upgradeOption;
+    return upgradeOptionItem;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
-exports.delete = async (id, res) => {
+exports.deleteItem = async (id, res) => {
   try {
-    const deletedOption = await option.findByIdAndDelete({ _id: ObjectId(id) });
+    const deletedOptionItem = await optionItem.findByIdAndDelete({ _id: ObjectId(id) });
 
-    if (!deletedOption)
+    if (!deletedOptionItem)
       return res.status(403).json({ message: "Invalid data" });
 
-    return deletedOption;
+    return deletedOptionItem;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
-exports.get = async (res) => {
+exports.getItems = async (res) => {
   try {
-    const options = await option.find({});
+    const optionItems = await optionItem.find({});
 
-    if (!options) return res.status(403).json({ message: "Invalid data" });
+    if (!optionItems) return res.status(403).json({ message: "Invalid data" });
 
-    return options;
+    return optionItems;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ message: "Invalid data", err });
