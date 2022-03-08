@@ -31,7 +31,8 @@ exports.upgrade = async (id, data, res) => {
   try {
     const upgradeOption = await option.findByIdAndUpdate(
       { _id: ObjectId(id) },
-      data
+      data,
+      { new: true }
     );
 
     if (!upgradeOption)
