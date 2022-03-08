@@ -36,7 +36,8 @@ exports.upgrade = async (itemId, data, res) => {
       {
         _id: ObjectId(itemId),
       },
-      data
+      data,
+      {new: true}
     );
 
     if (!upgradQuestion)
