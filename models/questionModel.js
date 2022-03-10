@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    question: { type: String, required: true},
+    title: { type: String, required: true},
     image: { type: String},
     answers: [{ type: String }],
     rightAnswer: {type: Number, required: true},
@@ -21,18 +21,18 @@ exports.create = async (data, res) => {
   try {
     const newQuestion = await question.create(data);
 
-    if (!newQuestion) return res.status(403).json({ messgae: "Invaild data" });
+    if (!newQuestion) return res.status(403).json({ message: "Invalid data" });
 
     return newQuestion;
   } catch (err) {
     console.log("error: " + err);
-    return res.status(403).json({ messgae: "Invaild data", err });
+    return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
 exports.upgrade = async (itemId, data, res) => {
   try {
-    const upgradQuestion = await question.findByIdAndUpdate(
+    const upgradeQuestion = await question.findByIdAndUpdate(
       {
         _id: ObjectId(itemId),
       },
@@ -40,13 +40,13 @@ exports.upgrade = async (itemId, data, res) => {
       {new: true}
     );
 
-    if (!upgradQuestion)
-      return res.status(403).json({ messgae: "Invaild data" });
+    if (!upgradeQuestion)
+      return res.status(403).json({ message: "Invalid data" });
 
-    return upgradQuestion;
+    return upgradeQuestion;
   } catch (err) {
     console.log("error: " + err);
-    return res.status(403).json({ messgae: "Invaild data", err });
+    return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
@@ -57,23 +57,23 @@ exports.delete = async (itemId, res) => {
     });
 
     if (!deletedQuestion)
-      return res.status(403).json({ messgae: "Invaild data" });
+      return res.status(403).json({ message: "Invalid data" });
 
     return deletedQuestion;
   } catch (err) {
     console.log("error: " + err);
-    return res.status(403).json({ messgae: "Invaild data", err });
+    return res.status(403).json({ message: "Invalid data", err });
   }
 };
 
 exports.get = async (res) => {
   try {
     const questions = await question.find({});
-    if (!questions) return res.status(403).json({ messgae: "Invaild data" });
+    if (!questions) return res.status(403).json({ message: "Invalid data" });
 
     return questions;
   } catch (err) {
     console.log("error: " + err);
-    return res.status(403).json({ messgae: "Invaild data", err });
+    return res.status(403).json({ message: "Invalid data", err });
   }
 };

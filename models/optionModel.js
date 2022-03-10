@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const schema = new Schema(
   {
     title: { type: String, required: true },
-    item: [{ type: Object }],
   },
   {
     timestamps: true,
@@ -18,7 +17,7 @@ exports.create = async (data, res) => {
   try {
     const newOption = await option.create(data);
 
-    if (!newOption) return res.status(403).json({ messgae: "Invaild data" });
+    if (!newOption) return res.status(403).json({ message: "Invalid data" });
 
     return newOption;
   } catch (err) {
@@ -36,7 +35,7 @@ exports.upgrade = async (id, data, res) => {
     );
 
     if (!upgradeOption)
-      return res.status(403).json({ messgae: "Invaild data" });
+      return res.status(403).json({ message: "Invalid data" });
 
     return upgradeOption;
   } catch (err) {
@@ -50,7 +49,7 @@ exports.delete = async (id, res) => {
     const deletedOption = await option.findByIdAndDelete({ _id: ObjectId(id) });
 
     if (!deletedOption)
-      return res.status(403).json({ messgae: "Invaild data" });
+      return res.status(403).json({ message: "Invalid data" });
 
     return deletedOption;
   } catch (err) {
@@ -63,7 +62,7 @@ exports.get = async (res) => {
   try {
     const options = await option.find({});
 
-    if (!options) return res.status(403).json({ messgae: "Invaild data" });
+    if (!options) return res.status(403).json({ message: "Invalid data" });
 
     return options;
   } catch (err) {

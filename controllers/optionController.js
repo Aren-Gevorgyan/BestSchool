@@ -3,11 +3,10 @@ const optionModel = require("../models/optionModel");
 exports.createOption = async (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Invalid data" });
 
-  const { title, item } = req.body;
+  const { title } = req.body;
 
   const data = {
     title,
-    item,
   };
 
   const newData = await optionModel.create(data, res);
@@ -18,12 +17,11 @@ exports.createOption = async (req, res) => {
 exports.upgradeOption = async (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Invalid data" });
 
-  const { title, item } = req.body;
+  const { title } = req.body;
   const { id } = req.params;
 
   const data = {
     title,
-    item,
   };
 
   const newData = await optionModel.upgrade(id, data, res);
@@ -32,7 +30,6 @@ exports.upgradeOption = async (req, res) => {
 };
 
 exports.deleteOption = async (req, res) => {
-  console.log(888)
   const { id } = req.params;
 
   const newData = await optionModel.delete(id, res);
