@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const ObjectId = require("mongodb").ObjectId;
 const Schema = mongoose.Schema;
+const axios = require("axios").default;
 
 const schema = new Schema(
   {
@@ -62,9 +63,26 @@ exports.get = async (res) => {
   try {
     const options = await option.find({});
 
+    const optionItems = await axios.get("http://localhost:3020/option-items");
+
+    const optionsWhitItems = options.map((value) => {
+
+      const items = optionItems.data.filter((val) => {
+          return value._id.equals(val.optionId)
+        });
+
+      const data = {
+        _id: value._id,
+        title: value.title,
+        items
+      } 
+
+      return data;
+    }) 
+
     if (!options) return res.status(403).json({ message: "Invalid data" });
 
-    return options;
+    return optionsWhitItems;
   } catch (err) {
     console.log("error: " + err);
     return res.status(403).json({ message: "Invalid data", err });
