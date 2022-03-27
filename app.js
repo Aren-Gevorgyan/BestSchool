@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require("cors");
 const authRouter = require("./routers/authRouter");
 const optionRouter = require("./routers/optionRouter");
 const questionRouter = require("./routers/questionRouter");
@@ -24,5 +24,5 @@ mongoose.connect(
 app.use(cors());
 app.use("/option", optionRouter);
 app.use("/option-items", optionItemsRouter);
-app.use("/question", questionRouter);
+app.use("/questions", questionRouter);
 app.use("/sign-in", authRouter);

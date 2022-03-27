@@ -40,8 +40,15 @@ exports.deleteQuestion = async (req, res) => {
   return res.status(202).json(allData);
 };
 
-exports.getQuestion = async (req, res) => {
-  const allData = await questionModel.get(res);
+exports.findQuestion = async (req, res) => {
+  const id = req.params.id;
+  const allData = await questionModel.find(res, id);
+
+  return res.status(202).json(allData);
+};
+
+exports.findQuestions = async (req, res) => {
+  const allData = await questionModel.findAll(res);
 
   return res.status(202).json(allData);
 };

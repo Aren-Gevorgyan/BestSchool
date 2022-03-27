@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema(
   {
-    title: { type: String, required: true},
-    image: { type: String},
+    title: { type: String, required: true },
+    image: { type: String },
     answers: [{ type: String }],
-    rightAnswer: {type: Number, required: true},
-    optionId: { type: mongoose.Types.ObjectId, required: true},
+    rightAnswer: { type: Number, required: true },
+    optionId: { type: mongoose.Types.ObjectId, required: true },
   },
   {
     timestamps: true,
@@ -37,7 +37,7 @@ exports.upgrade = async (itemId, data, res) => {
         _id: ObjectId(itemId),
       },
       data,
-      {new: true}
+      { new: true }
     );
 
     if (!upgradeQuestion)
@@ -66,7 +66,20 @@ exports.delete = async (itemId, res) => {
   }
 };
 
-exports.get = async (res) => {
+exports.find = async (res, id) => {
+  try {
+    console.log(id, "id");
+    const questions = await question.find({ optionId: ObjectId(id) });
+    if (!questions) return res.status(403).json({ message: "Invalid data" });
+
+    return questions;
+  } catch (err) {
+    console.log("error: " + err);
+    return res.status(403).json({ message: "Invalid data", err });
+  }
+};
+
+exports.findAll = async (res, id) => {
   try {
     const questions = await question.find({});
     if (!questions) return res.status(403).json({ message: "Invalid data" });
