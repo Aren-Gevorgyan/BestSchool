@@ -8,7 +8,7 @@ const questionRouter = require("./routers/questionRouter");
 const optionItemsRouter = require("./routers/optionItemsRouter");
 
 mongoose.connect(
-  "mongodb://0.0.0.0:27017/bestschool",
+  "mongodb+srv://Aren:best@cluster0.eugmc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
