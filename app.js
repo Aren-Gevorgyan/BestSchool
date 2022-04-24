@@ -14,7 +14,7 @@ mongoose.connect(
     useNewUrlParser: true,
   },
   (err, res) => {
-    if (err) return console.log(err);
+    if (err) return console.log(err, 'Error:');
     app.listen("3020", () => {
       console.log("Connect success port:3020");
     });
