@@ -38,7 +38,6 @@ exports.deleteOption = async (req, res) => {
 };
 
 exports.getOption = async (req, res) => {
-  console.log(555);
   const newData = await optionModel.get(res);
 
   return res.status(202).json(newData);
