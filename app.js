@@ -23,7 +23,7 @@ mongoose.connect(
 );
 
 app.use(cors());
-app.use("/option", optionRouter);
+app.use("/", optionRouter);
 app.use("/option-items", optionItemsRouter);
 app.use("/questions", questionRouter);
 app.use("/sign-in", authRouter);
