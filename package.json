@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start app.js",
+    "start": "node app.js",
     "mongo": "sudo systemctl start mongod",
     "dev": "nodemon app.js"
   },
