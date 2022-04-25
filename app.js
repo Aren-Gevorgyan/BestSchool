@@ -6,6 +6,7 @@ const authRouter = require("./routers/authRouter");
 const optionRouter = require("./routers/optionRouter");
 const questionRouter = require("./routers/questionRouter");
 const optionItemsRouter = require("./routers/optionItemsRouter");
+require('dotenv').config()
 
 mongoose.connect(
   "mongodb+srv://Aren:best@cluster0.eugmc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
@@ -15,7 +16,7 @@ mongoose.connect(
   },
   (err, res) => {
     if (err) return console.log(err, 'Error:');
-    app.listen("3020", () => {
+    app.listen(process.env.PORT || "3020", () => {
       console.log("Connect success port:3020");
     });
   }
