@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "mongo": "sudo systemctl start mongod",
     "dev": "nodemon app.js"
   },
   "author": "",
