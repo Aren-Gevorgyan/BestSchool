@@ -17,7 +17,7 @@ mongoose.connect(
   (err, res) => {
     if (err) return console.log(err, 'Error:');
     app.listen(process.env.PORT || "3020", () => {
-      console.log("Connect success port:3020");
+      console.log(`Connect success port:${process.env.PORT}`);
     });
   }
 );
