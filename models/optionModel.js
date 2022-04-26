@@ -63,7 +63,7 @@ exports.get = async (res) => {
   try {
     const options = await option.find({});
 
-    const optionItems = await axios.get("/option-items");
+    const optionItems = await axios.get("https://best-school-app.herokuapp.com/option-items");
 
     const optionsWhitItems = options.map((value) => {
 
