@@ -9,7 +9,7 @@ const optionItemsRouter = require("./routers/optionItemsRouter");
 require('dotenv').config()
 
 mongoose.connect(
-  "mongodb+srv://Aren:best@cluster0.eugmc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "mongodb+srv://Aren:best@cluster0.eugmc.mongodb.net/bestSchool?retryWrites=true&w=majority",
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -17,7 +17,7 @@ mongoose.connect(
   (err, res) => {
     if (err) return console.log(err, 'Error:');
     app.listen(process.env.PORT || "3020", () => {
-      console.log(`Connect success port:${process.env.PORT}`);
+      console.log(`Connect success port:${process.env.PORT || "3020"}`);
     });
   }
 );
